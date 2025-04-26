@@ -34,6 +34,7 @@ use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 use std::sync::Arc;
 use std::time::Instant;
+use na::Vector2;
 use tracing::{debug, error};
 
 /// An immutable view into the engine, excluding the penholder.
@@ -866,6 +867,13 @@ impl Engine {
             | self.record(Instant::now())
             | self.update_content_rendering_current_viewport()
     }
+
+    // pub fn flip_selection_horizontal(&mut self) -> WidgetFlags {
+    //     self.store
+    //         .scale_strokes(&self.store.selection_keys_as_rendered(), na::Vector2::new(1.0, 1.0))
+    //         | self.record(Instant::now())
+    //         | self.update_content_rendering_current_viewport()
+    // }
 
     pub fn text_selection_change_style<F>(&mut self, modify_func: F) -> WidgetFlags
     where

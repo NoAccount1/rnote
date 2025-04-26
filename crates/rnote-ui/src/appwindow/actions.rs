@@ -120,6 +120,8 @@ impl RnAppWindow {
         self.add_action(&action_selection_trash);
         let action_selection_duplicate = gio::SimpleAction::new("selection-duplicate", None);
         self.add_action(&action_selection_duplicate);
+        let action_selection_mirror = gio::SimpleAction::new("selection-mirror", None);
+        self.add_action(&action_selection_mirror);
         let action_selection_invert_color = gio::SimpleAction::new("selection-invert-color", None);
         self.add_action(&action_selection_invert_color);
         let action_selection_select_all = gio::SimpleAction::new("selection-select-all", None);
@@ -567,6 +569,18 @@ impl RnAppWindow {
                 appwindow.handle_widget_flags(widget_flags, &canvas);
             }
         ));
+
+        // Mirror selection horizontally
+        // action_selection_mirror.connect_activate(clone!(
+        //     #[weak(rename_to=appwindow)]
+        //     self,
+        //     move |_, _| {
+        //         let Some(canvas) = appwindow.active_tab_canvas() else {
+        //             return;
+        //         };
+        //         canvas.engine_mut().
+        //     }
+        // ));
 
         // invert color brightness of selection
         action_selection_invert_color.connect_activate(clone!(
